@@ -1,0 +1,106 @@
+.name-list {
+  width: 100%;
+}
+
+.name-list h2 {
+  margin: 0 0 1rem 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: rgba(33, 43, 69, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.add-name-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.name-input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-family: inherit;
+  border: 1px solid rgba(33, 43, 69, 0.15);
+  border-radius: 6px;
+  background: white;
+  color: #212B45;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.name-input:focus {
+  border-color: #b84de0;
+}
+
+.name-input::placeholder {
+  color: rgba(33, 43, 69, 0.3);
+}
+
+.add-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+
+.names {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.name-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  color: #212B45;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(33, 43, 69, 0.08);
+}
+
+.name-item:last-child {
+  border-bottom: none;
+}
+
+.color-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.name-text {
+  flex: 1;
+}
+
+.remove-button {
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: rgba(33, 43, 69, 0.3);
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+  line-height: 1;
+}
+
+.remove-button:hover {
+  color: #212B45;
+  background: rgba(33, 43, 69, 0.08);
+}
+
+.empty-message {
+  color: rgba(33, 43, 69, 0.3);
+  font-size: 0.875rem;
+  margin: 0;
+}
