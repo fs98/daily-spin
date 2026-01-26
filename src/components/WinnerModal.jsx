@@ -23,7 +23,7 @@ function WinnerModal({ winner, onClose }) {
         `https://api.api-ninjas.com/v2/randomquotes?exclude_categories=${EXCLUDE_CATEGORIES}`,
         {
           headers: {
-            'X-Api-Key': 'hLkmGBsRCX6pliSsroxw1GtEH99DPIjLtZUoPvQM'
+            'X-Api-Key': import.meta.env.VITE_API_NINJAS_KEY
           }
         }
       )
