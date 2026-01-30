@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import FortuneWheel from './components/FortuneWheel'
 import NameList from './components/NameList'
 import WinnerModal from './components/WinnerModal'
+import QuoteModal from './components/QuoteModal'
 import './App.css'
 
 const STORAGE_KEY = 'daily-spin-names'
@@ -12,6 +13,7 @@ function App() {
     return stored ? JSON.parse(stored) : []
   })
   const [winner, setWinner] = useState(null)
+  const [showQuoteModal, setShowQuoteModal] = useState(false)
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(names))
@@ -56,9 +58,17 @@ function App() {
           onSpinEnd={handleSpinEnd}
           disabled={!!winner}
         />
+
+        <button
+          className="quote-button"
+          onClick={() => setShowQuoteModal(true)}
+        >
+          Motivational Quote
+        </button>
       </main>
 
       <WinnerModal winner={winner} onClose={handleCloseModal} />
+      <QuoteModal isOpen={showQuoteModal} onClose={() => setShowQuoteModal(false)} />
     </div>
   )
 }

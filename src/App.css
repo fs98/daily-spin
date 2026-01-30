@@ -39,6 +39,25 @@
   color: rgba(33, 43, 69, 0.5);
 }
 
+.quote-button {
+  margin-top: 1rem;
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(33, 43, 69, 0.6);
+  background: transparent;
+  border: 1px solid rgba(33, 43, 69, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.quote-button:hover {
+  color: #667eea;
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
 @media (max-width: 768px) {
   .app {
     flex-direction: column;

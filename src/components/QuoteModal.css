@@ -1,0 +1,103 @@
+.quote-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+  animation: quote-fade-in 0.2s ease;
+  padding: 1rem;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+@keyframes quote-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.quote-modal-content {
+  text-align: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  padding: 2rem;
+  border-radius: 16px;
+  cursor: default;
+  animation: quote-scale-in 0.2s ease;
+  width: 100%;
+  max-width: 420px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+@keyframes quote-scale-in {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.quote-modal-content h2 {
+  margin: 0 0 1.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+}
+
+.quote-body {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quote-modal-content .quote-loading {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.quote-modal-content .quote-text {
+  margin: 0;
+  font-size: 1.1rem;
+  color: white;
+  font-style: italic;
+  line-height: 1.6;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.quote-modal-content .quote-author {
+  margin: 1rem 0 0 0;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.refresh-button {
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #667eea;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.refresh-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+}
+
+.refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.quote-modal-backdrop .dismiss-hint {
+  margin-top: 1.5rem;
+  color: rgba(33, 43, 69, 0.4);
+  font-size: 0.75rem;
+}
