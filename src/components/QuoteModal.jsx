@@ -10,7 +10,7 @@ function QuoteModal({ isOpen, onClose }) {
 
     try {
       const response = await fetch(
-        "https://api.api-ninjas.com/v2/randomquotes?categories=success,wisdom",
+        "https://api.api-ninjas.com/v2/randomquotes?categories=success",
         {
           headers: {
             "X-Api-Key": import.meta.env.VITE_API_NINJAS_KEY,
