@@ -9,10 +9,12 @@ function QuoteModal({ isOpen, onClose }) {
     setLoading(true);
 
     try {
-      const response = await fetch(
-        "https://api.allorigins.win/raw?url=" +
-          encodeURIComponent("https://zenquotes.io/api/random"),
-      );
+      const isDev = import.meta.env.DEV;
+      const url = isDev
+        ? "/api/zenquotes"
+        : "https://corsproxy.io/?" +
+          encodeURIComponent("https://zenquotes.io/api/random");
+      const response = await fetch(url, { cache: "no-store" });
       const data = await response.json();
       if (data?.length > 0) {
         setQuote({ quote: data[0].q, author: data[0].a });
