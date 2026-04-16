@@ -10,16 +10,12 @@ function QuoteModal({ isOpen, onClose }) {
 
     try {
       const response = await fetch(
-        "https://api.api-ninjas.com/v2/randomquotes?categories=success",
-        {
-          headers: {
-            "X-Api-Key": import.meta.env.VITE_API_NINJAS_KEY,
-          },
-        },
+        "https://api.allorigins.win/raw?url=" +
+          encodeURIComponent("https://zenquotes.io/api/random"),
       );
       const data = await response.json();
       if (data?.length > 0) {
-        setQuote(data[0]);
+        setQuote({ quote: data[0].q, author: data[0].a });
       }
     } catch (error) {
       console.error("Failed to fetch quote:", error);
