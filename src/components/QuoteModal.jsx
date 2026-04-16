@@ -13,7 +13,7 @@ function QuoteModal({ isOpen, onClose }) {
       const url = isDev
         ? "/api/zenquotes"
         : "https://corsproxy.io/?" +
-          encodeURIComponent("https://zenquotes.io/api/random");
+          encodeURIComponent("https://zenquotes.io/api/random?t=" + Date.now());
       const response = await fetch(url, { cache: "no-store" });
       const data = await response.json();
       if (data?.length > 0) {
