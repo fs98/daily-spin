@@ -7,12 +7,8 @@ function QuoteModal({ isOpen, onClose }) {
   const quotesCache = useRef([]);
 
   const fetchQuotes = async () => {
-    const isDev = import.meta.env.DEV;
-    const url = isDev
-      ? "/api/zenquotes"
-      : "https://corsproxy.io/?" +
-        encodeURIComponent("https://zenquotes.io/api/quotes?t=" + Date.now());
-    const response = await fetch(url, { cache: "no-store" });
+    const base = import.meta.env.BASE_URL || "/";
+    const response = await fetch(`${base}quotes.json`);
     const data = await response.json();
     if (Array.isArray(data)) {
       quotesCache.current = data.map((d) => ({ quote: d.q, author: d.a }));

@@ -26,8 +26,6 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_API_NINJAS_KEY: ${{ secrets.VITE_API_NINJAS_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
