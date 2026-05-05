@@ -10,7 +10,7 @@ export default defineConfig({
       '/api/zenquotes': {
         target: 'https://zenquotes.io',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api\/zenquotes/, '/api/random'),
+        rewrite: (path) => path.replace(/^\/api\/zenquotes/, '/api/quotes'),
       },
     },
   },

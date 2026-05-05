@@ -1,34 +1,46 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./QuoteModal.css";
 
 function QuoteModal({ isOpen, onClose }) {
   const [quote, setQuote] = useState(null);
   const [loading, setLoading] = useState(false);
+  const quotesCache = useRef([]);
 
-  const fetchQuote = async () => {
-    setLoading(true);
+  const fetchQuotes = async () => {
+    const isDev = import.meta.env.DEV;
+    const url = isDev
+      ? "/api/zenquotes"
+      : "https://corsproxy.io/?" +
+        encodeURIComponent("https://zenquotes.io/api/quotes?t=" + Date.now());
+    const response = await fetch(url, { cache: "no-store" });
+    const data = await response.json();
+    if (Array.isArray(data)) {
+      quotesCache.current = data.map((d) => ({ quote: d.q, author: d.a }));
+    }
+  };
 
-    try {
-      const isDev = import.meta.env.DEV;
-      const url = isDev
-        ? "/api/zenquotes"
-        : "https://corsproxy.io/?" +
-          encodeURIComponent("https://zenquotes.io/api/random?t=" + Date.now());
-      const response = await fetch(url, { cache: "no-store" });
-      const data = await response.json();
-      if (data?.length > 0) {
-        setQuote({ quote: data[0].q, author: data[0].a });
-      }
-    } catch (error) {
-      console.error("Failed to fetch quote:", error);
-    } finally {
+  const showRandomQuote = () => {
+    const cache = quotesCache.current;
+    if (cache.length === 0) return;
+    const index = Math.floor(Math.random() * cache.length);
+    setQuote(cache[index]);
+  };
+
+  const handleNewQuote = async () => {
+    if (quotesCache.current.length <= 1) {
+      setLoading(true);
+      await fetchQuotes();
       setLoading(false);
     }
+    showRandomQuote();
   };
 
   useEffect(() => {
     if (isOpen && !quote) {
-      fetchQuote();
+      setLoading(true);
+      fetchQuotes()
+        .then(() => showRandomQuote())
+        .finally(() => setLoading(false));
     }
   }, [isOpen]);
 
@@ -54,7 +66,7 @@ function QuoteModal({ isOpen, onClose }) {
 
         <button
           className="refresh-button"
-          onClick={fetchQuote}
+          onClick={handleNewQuote}
           disabled={loading}
         >
           {loading ? "Loading..." : "New Quote"}
